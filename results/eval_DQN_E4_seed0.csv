@@ -1,0 +1,11 @@
+source,algorithm,exp_id,config_id,seed,phase,episode,cumulative_reward,is_success,time_to_goal,falls,collisions,out_of_track_events,shield_interventions
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed0,0,eval,1,101.71,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed1,0,eval,2,101.71,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed2,0,eval,3,101.71,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed3,0,eval,4,101.71,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed4,0,eval,5,101.709,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed5,0,eval,6,101.706,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed6,0,eval,7,101.708,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed7,0,eval,8,101.702,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed8,0,eval,9,101.709,1,39,0,0,0,0
+DEBUG_SIM_NO_WEBOTS,DQN,E4,L6_W2_G6-0_S0-0_O4_seed9,0,eval,10,101.71,1,39,0,0,0,0

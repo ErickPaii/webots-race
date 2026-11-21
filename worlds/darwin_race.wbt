@@ -1,0 +1,326 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/robotis/darwin-op/protos/Darwin-op.proto"
+
+WorldInfo {
+  info [
+    "Carrera DARwIn-OP - Parcial IA Universidad Distrital"
+  ]
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.0567981543768041 0.07026138236160731 -0.9959102910443413 1.0346840567830276
+  position -1.9442262953340956 4.201690342373419 0.7652362224209138
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 3 0 0
+  floorSize 8 3
+  floorTileSize 1 1
+}
+Solid {
+  translation 0 0 0.001
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 1 1
+        }
+      }
+      geometry Box {
+        size 0.05 2 0.002
+      }
+    }
+  ]
+  name "start_line"
+}
+Solid {
+  translation 6 0 0.001
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0 0
+        }
+      }
+      geometry Box {
+        size 0.05 2 0.002
+      }
+    }
+  ]
+  name "goal_line"
+}
+DEF OBSTACLE_0 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_0"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_1 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_1"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_2 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_2"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_3 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_3"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_4 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_4"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_5 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_5"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_6 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_6"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF OBSTACLE_7 Solid {
+  translation 0 -5 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.8
+        }
+      }
+      geometry Cylinder {
+        height 0.3
+        radius 0.12
+      }
+    }
+  ]
+  name "obstacle_7"
+  boundingObject Cylinder {
+    height 0.3
+    radius 0.12
+  }
+}
+DEF DARWIN Darwin-op {
+  hidden position_0_0 -5.158028360056525e-09
+  hidden position_0_1 7.721361172663421e-08
+  hidden position_0_2 -8.049879254845571e-08
+  hidden position_0_3 0.7200001179318731
+  hidden position_0_4 -0.8399999172111774
+  hidden linearVelocity_0 -0.018771230869619068 0.012979153960778877 0.016887596919015455
+  hidden angularVelocity_0 -0.384231470718438 -0.5528717562780866 -0.0014270821749538323
+  hidden rotation_10 0.5774169373498325 0.5773169322224083 0.5773169322225419 2.0943999978059407
+  hidden position_10_0 0.19000001793358656
+  hidden linearVelocity_10 -0.032464809906696535 0.022710389575101974 -0.07329093393522168
+  hidden angularVelocity_10 -0.38423153799773285 -0.5528717825204484 -0.0014270867135007075
+  hidden rotation_11 1 0 0 0.5953999820663337
+  hidden linearVelocity_11 -0.05050479072421353 0.03526071628656519 -0.0812955330358742
+  hidden angularVelocity_11 -0.38423156628015276 -0.5528718215709975 -0.0014270889789623114
+  hidden rotation_15 0.5773565101795243 0.5773470518804644 0.5773472454582746 2.094414776611994
+  hidden position_15_0 -2.738308818311993e-07
+  hidden linearVelocity_15 -0.05461859230832257 0.03781907535733338 0.03992393603282237
+  hidden angularVelocity_15 -0.38422996304337326 -0.552866734787654 -0.0014276412133968465
+  hidden rotation_16 0 0 0.9999999999999999 2.7314279645418187e-07
+  hidden position_16_0 0.2934732156362367
+  hidden linearVelocity_16 -0.03486278552734651 0.024071331650749074 0.0508258142311948
+  hidden angularVelocity_16 -0.384228894971674 -0.5528615405140784 -0.0014312402328021173
+  hidden rotation_17 -1 0 0 0.29347321563623635
+  hidden position_17_0 -0.905028590092624
+  hidden linearVelocity_17 -0.0432877179757022 0.030049812095958084 0.03706233954533169
+  hidden angularVelocity_17 -0.020963735190358747 0.08185562893019169 -0.023947140640160253
+  hidden rotation_18 1 0 0 0.905028590092624
+  hidden position_18_0 0.3605558359876461
+  hidden linearVelocity_18 -0.043776000688922345 0.027534797852249514 0.03600473638151473
+  hidden angularVelocity_18 -0.057477359303391554 0.01760859799136683 -0.021422753043868297
+  hidden rotation_19 1 0 0 0.3605558359876455
+  hidden position_19_0 4.857589803759925e-07
+  hidden linearVelocity_19 -0.044193831101817446 0.025494423243035524 0.026413067298121245
+  hidden angularVelocity_19 -0.2650692591086507 -0.34507346803999006 -0.00851345628146865
+  hidden rotation_20 0 0 1 4.860611686199943e-07
+  hidden linearVelocity_20 -0.03730768647121846 0.019812181550605112 0.042685645319676675
+  hidden angularVelocity_20 -0.2650689961223389 -0.3450761334897325 -0.008512294754820673
+  hidden rotation_21 0.5773262472080273 0.5773623036414203 0.5773622559698273 2.094416834028917
+  hidden position_21_0 6.091772330791833e-07
+  hidden linearVelocity_21 -0.05593594690152098 0.038720196467474564 0.044364554493038694
+  hidden angularVelocity_21 -0.384237026673209 -0.5528803162631325 -0.0014302505623642325
+  hidden rotation_22 0 0 -1 6.093099206763789e-07
+  hidden position_22_0 -0.2934747687212128
+  hidden linearVelocity_22 -0.03615442368561625 0.02493926663325723 0.05537643985922193
+  hidden angularVelocity_22 -0.38424282278851074 -0.552888683580909 -0.0014319048440511184
+  hidden rotation_23 -1 0 0 0.29347476872121325
+  hidden position_23_0 1.0615537771326178
+  hidden linearVelocity_23 -0.044541569614428074 0.03086578118915526 0.04165080896442545
+  hidden angularVelocity_23 -0.0209626886614543 0.08180765864048932 -0.02398928405417986
+  hidden rotation_24 1 0 0 1.0615537771326178
+  hidden position_24_0 -0.36055876639415707
+  hidden linearVelocity_24 -0.06423104351639002 0.0377059055835379 0.00707546650542191
+  hidden angularVelocity_24 0.3056885014231686 0.652309135437279 -0.044045841005644716
+  hidden rotation_25 1 0 0 0.3605587663941565
+  hidden position_25_0 5.256513746604859e-07
+  hidden linearVelocity_25 -0.08314678097270221 0.04618075623788763 -0.004556805125886267
+  hidden angularVelocity_25 0.09818619179886372 0.2895305630413396 -0.031147685807169947
+  hidden rotation_26 0 0 1 5.255696799918546e-07
+  hidden linearVelocity_26 -0.0913028749275393 0.047848609809365124 -0.014513021241918278
+  hidden angularVelocity_26 0.09818710135164942 0.2895276771493218 -0.03114708478879751
+  hidden rotation_27 0.6733928954750794 0.6733928954731574 0.30509673326662534 2.5494000794144918
+  hidden position_27_0 0.35999982230488947
+  hidden linearVelocity_27 -0.043000806890588814 0.029924586862483074 -0.031442117352211606
+  hidden angularVelocity_27 -0.38423016360754614 -0.5528724121443569 -0.0014256457519810101
+  hidden rotation_28 0 0 1 0.42540017769500543
+  hidden position_28_0 -0.5199999867991169
+  hidden linearVelocity_28 -0.02568718080530336 0.01787528364123471 -0.01831718282006253
+  hidden angularVelocity_28 -0.3842283968231594 -0.5528722225025803 -0.0014242678274290314
+  hidden rotation_29 -1 0 0 2.0907999867991096
+  hidden linearVelocity_29 -0.04953055721927778 0.034364141532768025 0.011095742091974614
+  hidden angularVelocity_29 -0.3842284251340376 -0.5528722730443664 -0.0014242673384387648
+  hidden rotation_30 0.6825799505627497 0.6825799505603004 0.26109236331775754 2.6306999434900074
+  hidden position_30_0 -0.3300001131237803
+  hidden linearVelocity_30 -0.054251092432518334 0.03776643958701767 -0.03593277980064174
+  hidden angularVelocity_30 -0.38423087831691904 -0.5528714469630712 -0.0014271486607422487
+  hidden rotation_31 0 0 -1 0.4553998868761112
+  hidden position_31_0 0.5099999869472054
+  hidden linearVelocity_31 -0.026921505014618707 0.01872242658283325 -0.009668991100979574
+  hidden angularVelocity_31 -0.3842311721176902 -0.5528703096468424 -0.0014283997416786494
+  hidden rotation_32 -0.9999999999999999 0 0 2.080799986947196
+  hidden linearVelocity_32 -0.04802857394405064 0.03330276707067774 0.024406409677108144
+  hidden angularVelocity_32 -0.3842311897763939 -0.5528703406520881 -0.0014284011738973368
+  translation -0.3565056358598524 0.19266580511261786 0.07679586557767908
+  rotation -0.26485047816620844 -0.9390729090609441 -0.21908056893057928 1.6962602675228275
+  name "darwin"
+  controller "darwin_agent"
+}
+DEF SUPERVISOR Robot {
+  children [
+    Emitter {
+    }
+  ]
+  name "supervisor"
+  controller "supervisor_controller"
+  supervisor TRUE
+}

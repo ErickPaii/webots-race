@@ -1,0 +1,91 @@
+#VRML_SIM R2025a utf8
+# Mundo de CARRERA SIMULTÁNEA de 4 robots DARwIn-OP (evaluación, sin aprendizaje).
+#
+# Los 4 agentes (CUSTOM, PPO, DQN, A2C) compiten a la vez desde una línea de
+# salida común hasta la meta. Cada robot tiene su propio Emitter/Receiver en un
+# CANAL distinto (0..3) para recibir sus comandos de marcha del supervisor de
+# carrera. El supervisor registra el orden de llegada y los tiempos.
+#
+# Eje vertical = Z (plano de pista XY). Los 4 robots parten en carriles
+# separados en Y para no colisionar en la salida.
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/robotis/darwin-op/protos/Darwin-op.proto"
+
+WorldInfo {
+  info [ "Carrera simultanea 4x DARwIn-OP - Parcial IA Universidad Distrital" ]
+  basicTimeStep 32
+  contactProperties [
+    ContactProperties { material1 "default" material2 "default" coulombFriction [ 1 ] }
+  ]
+}
+Viewpoint {
+  orientation -0.5774 0.5774 0.5774 2.0944
+  position 3.0 -8.0 6.5
+}
+TexturedBackground { }
+TexturedBackgroundLight { }
+RectangleArena {
+  translation 3.0 0 0
+  floorSize 8 4
+  floorTileSize 1 1
+  wallHeight 0.1
+}
+
+Solid {
+  translation 0 0 0.001
+  children [ Shape { appearance Appearance { material Material { diffuseColor 1 1 1 } }
+                     geometry Box { size 0.05 4.0 0.002 } } ]
+  name "start_line"
+}
+Solid {
+  translation 6 0 0.001
+  children [ Shape { appearance Appearance { material Material { diffuseColor 1 0 0 } }
+                     geometry Box { size 0.05 4.0 0.002 } } ]
+  name "goal_line"
+}
+
+# ---- 4 robots en carriles separados (Y = -1.2, -0.4, 0.4, 1.2), canales 0..3 ----
+DEF DARWIN_CUSTOM Darwin-op {
+  translation 0 1.2 0.227
+  rotation 0 0 1 0
+  name "darwin_custom"
+  controller "race_agent"
+  channel 0
+}
+DEF DARWIN_PPO Darwin-op {
+  translation 0 0.4 0.227
+  rotation 0 0 1 0
+  name "darwin_ppo"
+  controller "race_agent"
+  channel 1
+}
+DEF DARWIN_DQN Darwin-op {
+  translation 0 -0.4 0.227
+  rotation 0 0 1 0
+  name "darwin_dqn"
+  controller "race_agent"
+  channel 2
+}
+DEF DARWIN_A2C Darwin-op {
+  translation 0 -1.2 0.227
+  rotation 0 0 1 0
+  name "darwin_a2c"
+  controller "race_agent"
+  channel 3
+}
+
+# ---- Supervisor de carrera: 4 emitters (canales 0..3) ----
+DEF RACE_SUPERVISOR Robot {
+  name "race_supervisor"
+  controller "race_supervisor_controller"
+  supervisor TRUE
+  children [
+    Emitter { name "emitter0" channel 0 }
+    Emitter { name "emitter1" channel 1 }
+    Emitter { name "emitter2" channel 2 }
+    Emitter { name "emitter3" channel 3 }
+  ]
+}

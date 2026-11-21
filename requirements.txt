@@ -1,0 +1,15 @@
+# Dependencias del proyecto (Python >= 3.10, probado con 3.11).
+# PyTorch (CPU) se instala desde su índice propio; ver README para el comando
+# exacto con --index-url. Las demás se instalan con pip normal.
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+
+numpy>=1.24,<3.0
+gymnasium>=0.29,<1.0
+stable-baselines3>=2.3,<3.0
+matplotlib>=3.7
+
+# torch se lista aquí como referencia de versión mínima, pero INSTÁLALO primero
+# desde el índice CPU (línea de arriba) para evitar bajar la build con CUDA.
+torch>=2.3
