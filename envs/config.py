@@ -57,7 +57,7 @@ class RaceConfig:
     obstacles: List[Tuple[float, float, float]] = field(default_factory=list)
     seed: int = 0
     max_steps: int = 500
-    control_step_ms: int = 320  # 10 * basicTimeStep(32ms) -> ~0.32 s por step
+    control_step_ms: int = 160  # 5 * basicTimeStep(32ms); menos subpasos = entrenamiento ~2x mas rapido
     fall_pitch_threshold: float = 0.7
     fall_roll_threshold: float = 0.7
 

@@ -1,0 +1,11 @@
+source,algorithm,exp_id,config_id,seed,phase,episode,cumulative_reward,is_success,time_to_goal,falls,collisions,out_of_track_events,shield_interventions
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed0,0,eval,1,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed1,0,eval,2,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed2,0,eval,3,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed3,0,eval,4,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed4,0,eval,5,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed5,0,eval,6,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed6,0,eval,7,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed7,0,eval,8,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed8,0,eval,9,-49.887,0,,0,0,0,0
+WEBOTS_REAL,PPO,G1,L6_W3_G6-1_S0--1_O1_seed9,0,eval,10,-49.887,0,,0,0,0,0

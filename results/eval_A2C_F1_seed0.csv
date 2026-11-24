@@ -1,0 +1,11 @@
+source,algorithm,exp_id,config_id,seed,phase,episode,cumulative_reward,is_success,time_to_goal,falls,collisions,out_of_track_events,shield_interventions
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed0,0,eval,1,-3980.71,0,,0,781,0,392
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed1,0,eval,2,-74.607,0,,0,0,0,388
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed2,0,eval,3,-49.465,0,,0,0,1,1
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed3,0,eval,4,-3980.71,0,,0,781,0,392
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed4,0,eval,5,-74.607,0,,0,0,0,388
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed5,0,eval,6,-49.465,0,,0,0,1,1
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed6,0,eval,7,-3980.71,0,,0,781,0,392
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed7,0,eval,8,-74.607,0,,0,0,0,388
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed8,0,eval,9,-49.465,0,,0,0,1,1
+WEBOTS_REAL,A2C,F1,L9_W1.2_G9--0.3_S0-0.3_O3_seed9,0,eval,10,-3980.71,0,,0,781,0,392

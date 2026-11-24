@@ -1,0 +1,5 @@
+source,exp_id,config_id,seed,algorithm,finish_rank,finish_step,finished
+WEBOTS_REAL,E4,L6_W2_G6-0_S0-0_O4_seed0,0,CUSTOM,1,20,1
+WEBOTS_REAL,E4,L6_W2_G6-0_S0-0_O4_seed0,0,PPO,,,0
+WEBOTS_REAL,E4,L6_W2_G6-0_S0-0_O4_seed0,0,DQN,,,0
+WEBOTS_REAL,E4,L6_W2_G6-0_S0-0_O4_seed0,0,A2C,2,20,1

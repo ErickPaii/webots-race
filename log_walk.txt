@@ -1,13 +1,9 @@
 [test_walk] fuente=WEBOTS_REAL  accion='forward'  pasos=25
-Traceback (most recent call last):
-  File "C:\proyectos\webots_race\test_walk.py", line 102, in <module>
-    main()
-  File "C:\proyectos\webots_race\test_walk.py", line 58, in main
-    obs, info = env.reset(seed=0)
-                ^^^^^^^^^^^^^^^^^
-  File "C:\proyectos\webots_race\envs\darwin_race_env.py", line 139, in reset
-    self._ensure_connection()
-  File "C:\proyectos\webots_race\envs\darwin_race_env.py", line 126, in _ensure_connection
-    raise ConnectionError(
-ConnectionError: No se pudo conectar al Supervisor de Webots en 127.0.0.1:10001.
-Asegúrate de haber abierto el mundo worlds/darwin_race.wbt en Webots (el controlador Supervisor abre el servidor TCP). Último error: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+
+==== RESULTADO DE LA PRUEBA DE MARCHA ====
+  posicion inicial: x=0.000  y=0.000
+  posicion final:   x=4.500  y=0.000
+  distancia avanzada (X): 4.500 m
+  desvio lateral (Y):     0.000 m
+  se cayo: no
+  >>> La marcha SIRVE: avanza sin caerse. Puedes entrenar. <<<

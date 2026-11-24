@@ -1,13 +1,4 @@
 #VRML_SIM R2025a utf8
-# Mundo de CARRERA SIMULTÁNEA de 4 robots DARwIn-OP (evaluación, sin aprendizaje).
-#
-# Los 4 agentes (CUSTOM, PPO, DQN, A2C) compiten a la vez desde una línea de
-# salida común hasta la meta. Cada robot tiene su propio Emitter/Receiver en un
-# CANAL distinto (0..3) para recibir sus comandos de marcha del supervisor de
-# carrera. El supervisor registra el orden de llegada y los tiempos.
-#
-# Eje vertical = Z (plano de pista XY). Los 4 robots parten en carriles
-# separados en Y para no colisionar en la salida.
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
@@ -15,77 +6,273 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/robotis/darwin-op/protos/Darwin-op.proto"
 
 WorldInfo {
-  info [ "Carrera simultanea 4x DARwIn-OP - Parcial IA Universidad Distrital" ]
-  basicTimeStep 32
+  info [
+    "Carrera simultanea 4x DARwIn-OP - Parcial IA Universidad Distrital"
+  ]
   contactProperties [
-    ContactProperties { material1 "default" material2 "default" coulombFriction [ 1 ] }
+    ContactProperties {
+    }
   ]
 }
 Viewpoint {
-  orientation -0.5774 0.5774 0.5774 2.0944
-  position 3.0 -8.0 6.5
+  orientation -0.18707951067892595 0.15102241278473086 0.9706665171524215 1.8123070584083703
+  position 6.4489074971386025 -13.238080611313988 5.1940996660606595
 }
-TexturedBackground { }
-TexturedBackgroundLight { }
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
 RectangleArena {
-  translation 3.0 0 0
+  translation 3 0 0
   floorSize 8 4
   floorTileSize 1 1
-  wallHeight 0.1
 }
-
 Solid {
   translation 0 0 0.001
-  children [ Shape { appearance Appearance { material Material { diffuseColor 1 1 1 } }
-                     geometry Box { size 0.05 4.0 0.002 } } ]
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 1 1
+        }
+      }
+      geometry Box {
+        size 0.05 4 0.002
+      }
+    }
+  ]
   name "start_line"
 }
 Solid {
   translation 6 0 0.001
-  children [ Shape { appearance Appearance { material Material { diffuseColor 1 0 0 } }
-                     geometry Box { size 0.05 4.0 0.002 } } ]
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0 0
+        }
+      }
+      geometry Box {
+        size 0.05 4 0.002
+      }
+    }
+  ]
   name "goal_line"
 }
-
-# ---- 4 robots en carriles separados (Y = -1.2, -0.4, 0.4, 1.2), canales 0..3 ----
 DEF DARWIN_CUSTOM Darwin-op {
-  translation 0 1.2 0.227
-  rotation 0 0 1 0
+  hidden position_0_0 -2.4885168462611453e-08
+  hidden position_0_1 1.2431289898258944e-06
+  hidden position_0_2 -4.2688256423641045e-07
+  hidden position_0_3 0.7199991439198759
+  hidden position_0_4 -0.8399968363850551
+  hidden linearVelocity_0 0.00939479248707472 0.00018655041824108888 -0.010566866406327159
+  hidden angularVelocity_0 -0.008630875332690864 0.3333522991704257 0.0009092319716918792
+  hidden rotation_10 0.577416945465113 0.5773169281636963 0.5773169281645671 2.0943999856333724
+  hidden position_10_0 0.19000002352179654
+  hidden rotation_11 1 0 0 0.5953999764781988
+  hidden rotation_15 0.5773569589367643 0.577346827492413 0.5773470210815479 2.0944141034741124
+  hidden position_15_0 8.858526614356573e-07
+  hidden rotation_16 0 0 -0.9999999999999999 8.86086746890463e-07
+  hidden position_16_0 0.542709640999364
+  hidden rotation_17 -1 0 0 0.5427096409993637
+  hidden position_17_0 -0.9655310748653035
+  hidden rotation_18 1 0 0 0.9655310748653037
+  hidden position_18_0 0.45000103260125696
+  hidden rotation_19 1 0 0 0.4500010326012567
+  hidden position_19_0 1.613847493142933e-06
+  hidden rotation_20 0 0 0.9999999999999999 1.6137345279075207e-06
+  hidden rotation_21 0.5773261138842987 0.5773623702982845 0.577362322628348 2.0944170340178525
+  hidden position_21_0 2.04312864058659e-07
+  hidden rotation_22 0 0 -1 2.043144285798385e-07
+  hidden position_22_0 -0.5427090291171306
+  hidden rotation_23 -1 0 0 0.5427090291171301
+  hidden position_23_0 0.9037244763970285
+  hidden rotation_24 1 0 0 0.9037244763970287
+  hidden position_24_0 -0.4499999812880953
+  hidden rotation_25 1 0 0 0.4499999812880956
+  hidden position_25_0 -1.0407893102520614e-07
+  hidden rotation_26 0 0 -1 1.032382731180714e-07
+  hidden rotation_27 0.6733928142604603 0.673392814274414 0.3050970917363219 2.549399423521765
+  hidden position_27_0 0.3599999872617173
+  hidden rotation_28 0 0 1 0.42540001273827993
+  hidden position_28_0 -0.5200020129665371
+  hidden rotation_29 -1 0 0 2.090802012966537
+  hidden rotation_30 0.6825797358011438 0.6825797357075813 0.2610934864660724 2.630697840580198
+  hidden position_30_0 -0.32999895259835954
+  hidden rotation_31 0 0 -0.9999999999999999 0.45540104740163584
+  hidden position_31_0 0.5100005842000495
+  hidden rotation_32 -1 0 0 2.0808005842000488
+  translation 5.199840715391682 1.1724300355030757 0.0859622352803647
+  rotation 0.034263400847816754 -0.9976912644338001 0.05863582722898032 1.4570837829368912
   name "darwin_custom"
   controller "race_agent"
-  channel 0
 }
 DEF DARWIN_PPO Darwin-op {
-  translation 0 0.4 0.227
-  rotation 0 0 1 0
+  hidden position_0_0 2.616270131749215e-08
+  hidden position_0_1 1.4746463520316723e-06
+  hidden position_0_2 3.205449069520299e-08
+  hidden position_0_3 0.7199997030080187
+  hidden position_0_4 -0.8399992123317042
+  hidden linearVelocity_0 2.688870006851459e-05 7.279593957560442e-06 -3.0413193944781398e-06
+  hidden angularVelocity_0 9.227622557576759e-07 1.4725837498175379e-05 -6.359807997537143e-05
+  hidden rotation_10 0.5774169256805083 0.5773169380586113 0.5773169380576841 2.0944000153094624
+  hidden position_10_0 0.1900000597396476
+  hidden rotation_11 1 0 0 0.5953999402603535
+  hidden rotation_15 0.5773570480470847 0.5773467829353495 0.577346976526732 2.094413969808258
+  hidden position_15_0 -1.386526996375806e-06
+  hidden rotation_16 0 0 0.9999999999999999 1.3863686739937354e-06
+  hidden position_16_0 0.4500015649400797
+  hidden rotation_17 -1 0 0 0.4500015649400799
+  hidden position_17_0 -0.8999986531230924
+  hidden rotation_18 1 0 0 0.8999986531230922
+  hidden position_18_0 0.4499996716172701
+  hidden rotation_19 1 0 0 0.44999967161726967
+  hidden position_19_0 1.9533660606843462e-06
+  hidden rotation_20 0 0 1 1.9533597955911864e-06
+  hidden rotation_21 0.5773262905299856 0.5773622819820589 0.5773622343099314 2.0944167690449085
+  hidden position_21_0 -3.752503092592462e-08
+  hidden rotation_22 0 0 1 4.2146848510894035e-08
+  hidden position_22_0 -0.4499994607621203
+  hidden rotation_23 -1 0 0 0.44999946076212016
+  hidden position_23_0 0.9000002022675878
+  hidden rotation_24 1 0 0 0.9000002022675876
+  hidden position_24_0 -0.44999997306598216
+  hidden rotation_25 1 0 0 0.4499999730659821
+  hidden position_25_0 7.117135609841567e-09
+  hidden rotation_26 0 0 1 0
+  hidden rotation_27 0.6733928608781035 0.673392860882945 0.30509688597277734 2.5493998000077167
+  hidden position_27_0 0.3599991012227501
+  hidden rotation_28 0 0 0.9999999999999999 0.4254008987772513
+  hidden position_28_0 -0.5199999703572751
+  hidden rotation_29 -1 0 0 2.090799970357275
+  hidden rotation_30 0.68257990142633 0.6825799014030354 0.2610926202891308 2.630699462353431
+  hidden position_30_0 -0.32999951422336277
+  hidden rotation_31 0 0 -1 0.4554004857766351
+  hidden position_31_0 0.5099999022809756
+  hidden rotation_32 -1 0 0 2.080799902280975
+  translation 1.5754488125796768 0.4019314354370541 0.08408170060683995
+  rotation -0.010996618587682434 -0.9998969212344447 0.009231537548846846 1.4974134247003839
   name "darwin_ppo"
   controller "race_agent"
   channel 1
 }
 DEF DARWIN_DQN Darwin-op {
-  translation 0 -0.4 0.227
-  rotation 0 0 1 0
+  hidden position_0_0 -2.451003243506642e-08
+  hidden position_0_1 2.9815983808213314e-07
+  hidden position_0_2 -7.314765755927682e-07
+  hidden position_0_3 0.719999037250741
+  hidden position_0_4 -0.8399975115265736
+  hidden linearVelocity_0 -0.0016417902485470716 -0.0023226337887357453 -0.0031078020215279077
+  hidden angularVelocity_0 0.08291408051652947 -0.05843858079667318 0.0014222212043450144
+  hidden rotation_10 0.577416945449521 0.5773169281714949 0.5773169281723635 2.094399985656759
+  hidden position_10_0 0.19000005831994018
+  hidden rotation_11 1 0 0 0.5953999416800547
+  hidden rotation_15 0.5773565952210477 0.5773470093579344 0.577347202937893 2.0944146490493236
+  hidden position_15_0 -1.0611908501512421e-07
+  hidden rotation_16 0 0 1 1.0745380149674385e-07
+  hidden position_16_0 0.477813227081093
+  hidden rotation_17 -1 0 0 0.47781322708109275
+  hidden position_17_0 -0.9196599442385068
+  hidden rotation_18 1 0 0 0.9196599442385068
+  hidden position_18_0 0.45000093339469377
+  hidden rotation_19 1 0 0 0.4500009333946937
+  hidden position_19_0 1.6027865099234542e-06
+  hidden rotation_20 0 0 1 1.6026889872251883e-06
+  hidden rotation_21 0.577325996645522 0.5773624289132577 0.5773623812447762 2.094417209878967
+  hidden position_21_0 4.098130608293179e-08
+  hidden rotation_22 0 0 -1 4.2146848510894035e-08
+  hidden position_22_0 -0.47781257206265093
+  hidden rotation_23 -0.9999999999999999 0 0 0.4778125720626514
+  hidden position_23_0 0.9011173150349364
+  hidden rotation_24 1 0 0 0.9011173150349363
+  hidden position_24_0 -0.44999998318770396
+  hidden rotation_25 1 0 0 0.44999998318770423
+  hidden position_25_0 -4.185379665296555e-08
+  hidden rotation_26 0 0 -1 4.2146848510894035e-08
+  hidden rotation_27 0.6733928053662167 0.6733928053819097 0.3050971309942101 2.549399351691537
+  hidden position_27_0 0.35999867301426847
+  hidden rotation_28 0 0 1 0.42540132698573285
+  hidden position_28_0 -0.5199999382264218
+  hidden rotation_29 -1 0 0 2.0907999382264224
+  hidden rotation_30 0.6825797828647385 0.6825797827911426 0.261093240335944 2.630698301418133
+  hidden position_30_0 -0.3299985534835726
+  hidden rotation_31 0 0 -1 0.45540144651642434
+  hidden position_31_0 0.5099999754740911
+  hidden rotation_32 -1 0 0 2.080799975474091
+  translation 2.851350802314393 -0.4264739481385452 0.08466025365801527
+  rotation 0.6372222684869497 0.348260409825153 0.6875045217980477 -2.3927309904901968
   name "darwin_dqn"
   controller "race_agent"
   channel 2
 }
 DEF DARWIN_A2C Darwin-op {
-  translation 0 -1.2 0.227
-  rotation 0 0 1 0
+  hidden position_0_0 -2.48851616751857e-08
+  hidden position_0_1 1.243129013326472e-06
+  hidden position_0_2 -4.268825606013745e-07
+  hidden position_0_3 0.719999143919589
+  hidden position_0_4 -0.8399968363851638
+  hidden linearVelocity_0 0.009394792487029817 0.00018655041796721299 -0.01056686640633248
+  hidden angularVelocity_0 -0.008630875331974718 0.3333522991708905 0.0009092319707246269
+  hidden rotation_10 0.5774169454651106 0.577316928163698 0.5773169281645681 2.0943999856333733
+  hidden position_10_0 0.19000002352179057
+  hidden rotation_11 1 0 0 0.5953999764782071
+  hidden rotation_15 0.5773569589367734 0.5773468274924084 0.5773470210815435 2.0944141034740995
+  hidden position_15_0 8.858525654988992e-07
+  hidden rotation_16 0 0 -1 8.86086746890463e-07
+  hidden position_16_0 0.5427096409993799
+  hidden rotation_17 -1 0 0 0.5427096409993802
+  hidden position_17_0 -0.9655310748652799
+  hidden rotation_18 1 0 0 0.9655310748652797
+  hidden position_18_0 0.45000103260126606
+  hidden rotation_19 1 0 0 0.45000103260126567
+  hidden position_19_0 1.6138474895789253e-06
+  hidden rotation_20 0 0 0.9999999999999999 1.6137345279075207e-06
+  hidden rotation_21 0.5773261138842996 0.577362370298284 0.5773623226283477 2.0944170340178503
+  hidden position_21_0 2.0431288463709502e-07
+  hidden rotation_22 0 0 -1 2.043144285798385e-07
+  hidden position_22_0 -0.5427090291171306
+  hidden rotation_23 -1 0 0 0.5427090291171301
+  hidden position_23_0 0.9037244763970304
+  hidden rotation_24 1 0 0 0.9037244763970302
+  hidden position_24_0 -0.4499999812881038
+  hidden rotation_25 1 0 0 0.44999998128810353
+  hidden position_25_0 -1.0407892734602794e-07
+  hidden rotation_26 0 0 -1 1.032382731180714e-07
+  hidden rotation_27 0.6733928142604357 0.6733928142743907 0.3050970917364276 2.5493994235215727
+  hidden position_27_0 0.3599999872615532
+  hidden rotation_28 0 0 1 0.42540001273844086
+  hidden position_28_0 -0.5200020129665487
+  hidden rotation_29 -1 0 0 2.0908020129665483
+  hidden rotation_30 0.6825797358011512 0.682579735707589 0.2610934864660327 2.6306978405802726
+  hidden position_30_0 -0.32999895259857726
+  hidden rotation_31 0 0 -1 0.4554010474014165
+  hidden position_31_0 0.5100005842000448
+  hidden rotation_32 -1 0 0 2.080800584200044
+  translation 5.1998407153915585 -1.227569964496613 0.08596223528035542
+  rotation 0.034263400847068366 -0.9976912644338733 0.058635827228170026 1.4570837829368517
   name "darwin_a2c"
   controller "race_agent"
   channel 3
 }
-
-# ---- Supervisor de carrera: 4 emitters (canales 0..3) ----
 DEF RACE_SUPERVISOR Robot {
+  children [
+    Emitter {
+      name "emitter0"
+    }
+    Emitter {
+      name "emitter1"
+      channel 1
+    }
+    Emitter {
+      name "emitter2"
+      channel 2
+    }
+    Emitter {
+      name "emitter3"
+      channel 3
+    }
+  ]
   name "race_supervisor"
   controller "race_supervisor_controller"
   supervisor TRUE
-  children [
-    Emitter { name "emitter0" channel 0 }
-    Emitter { name "emitter1" channel 1 }
-    Emitter { name "emitter2" channel 2 }
-    Emitter { name "emitter3" channel 3 }
-  ]
 }

@@ -1,0 +1,11 @@
+source,algorithm,exp_id,config_id,seed,phase,episode,cumulative_reward,is_success,time_to_goal,falls,collisions,out_of_track_events,shield_interventions
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed0,0,eval,1,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed1,0,eval,2,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed2,0,eval,3,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed3,0,eval,4,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed4,0,eval,5,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed5,0,eval,6,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed6,0,eval,7,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed7,0,eval,8,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed8,0,eval,9,-49.1,0,,0,0,0,0
+WEBOTS_REAL,A2C,E4,L6_W2_G6-0_S0-0_O4_seed9,0,eval,10,-49.1,0,,0,0,0,0

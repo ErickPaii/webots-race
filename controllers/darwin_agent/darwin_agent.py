@@ -1,31 +1,4 @@
-"""Controlador del robot DARwIn-OP: ejecuta la marcha a partir de comandos.
-
-Corre DENTRO de Webots como controlador del nodo DARwIn-OP. Recibe del
-Supervisor (por el Receiver nativo, canal 0) los comandos de marcha
-"x_amp a_amp" (amplitud de avance X, amplitud de giro A) que corresponden a la
-acción discreta elegida por el agente, y los convierte en movimiento.
-
-DOS BACKENDS DE MARCHA (importante para instalación limpia de Webots R2025a):
-
-  1) Backend "managers" (C++ RobotisOp2GaitManager): es el gait manager oficial
-     del DARwIn-OP. PERO Webots NO distribuye un binding de Python precompilado
-     para estos managers (son C++; no hay interfaz SWIG en el repositorio). Por
-     tanto `import managers` suele FALLAR en una instalación limpia salvo que el
-     usuario compile la librería. Lo intentamos primero por si está disponible.
-
-  2) Backend "cpg" (POR DEFECTO, Python puro): un generador central de patrones
-     (CPG) sinusoidal que mueve directamente los motores de las piernas para
-     producir una marcha estable. NO requiere compilar nada: funciona con el
-     controlador Python estándar de Webots. Es el que garantiza que el proyecto
-     corra "out of the box".
-
-En ambos casos, el agente de RL solo decide avanzar/girar/parar: el patrón de
-marcha (equilibrio) lo resuelve este controlador, no el RL (decisión de diseño
-justificada en el informe).
-
-Safe learning a nivel de actuador: las amplitudes se recortan a límites seguros
-(límite de velocidad de marcha / giro) antes de aplicarlas.
-"""
+"""Controlador del robot DARwIn-OP: postura firme + animacion estetica (locomocion cuasi-estatica)."""
 
 from __future__ import annotations
 
@@ -33,64 +6,35 @@ import math
 import os
 import sys
 
-_PROJECT_ROOT = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "..")
-)
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 
 from envs.config import SafetyConfig  # noqa: E402
 
-
-# Nombres de los 12 motores de las piernas + pelvis usados por el CPG.
-# (verificados contra el PROTO Darwin-op de Webots R2025a)
 LEG_MOTORS = [
     "PelvYL", "PelvYR", "PelvL", "PelvR",
     "LegUpperL", "LegUpperR", "LegLowerL", "LegLowerR",
     "AnkleL", "AnkleR", "FootL", "FootR",
 ]
 
-
 class PythonCPGGait:
-    """Generador de marcha sinusoidal (CPG) en Python puro.
-
-    Produce una marcha funcional controlable por amplitud de avance (x_amp) y de
-    giro (a_amp). Es el backend por defecto para que el proyecto funcione sin
-    compilar los managers C++ del DARwIn-OP.
-
-    Convencion de ejes de las articulaciones (verificada contra los
-    minPosition/maxPosition del PROTO Darwin-op R2025a): las piernas izquierda y
-    derecha son ESPEJO, por lo que la flexion ocurre con signos OPUESTOS:
-
-        LegUpper (cadera, pitch):  izq flexiona en +,  der flexiona en -
-        LegLower (rodilla):        izq flexiona en -,  der flexiona en +
-        Ankle    (tobillo, pitch): izq compensa en +,  der compensa en -
-
-    Rangos reales (rad) relevantes:
-        LegUpperL [-0.50, 1.68]   LegUpperR [-1.77, 0.45]
-        LegLowerL [-2.25, 0.03]   LegLowerR [-0.02, 2.25]
-        AnkleL    [-1.39, 1.22]   AnkleR    [-1.24, 1.38]
-
-    Toda posicion pedida se recorta (clamp) al rango real de cada motor leido con
-    getMinPosition()/getMaxPosition(). Cada aviso de recorte se imprime UNA sola
-    vez por motor para no saturar la consola.
-    """
+    """Postura firme de pie + leve animacion de piernas al avanzar (con clamp)."""
 
     def __init__(self, robot, timestep):
         self.robot = robot
         self.timestep = timestep
         self.phase = 0.0
-        self.freq = 1.0  # Hz aprox. del ciclo de marcha
+        self.freq = 1.0
         self.motors = {}
-        self.limits = {}          # name -> (min, max)
-        self._warned = set()      # motores ya avisados de recorte
+        self.limits = {}
+        self._warned = set()
         for name in LEG_MOTORS:
             dev = robot.getDevice(name)
             if dev is not None:
                 self.motors[name] = dev
                 try:
                     lo, hi = dev.getMinPosition(), dev.getMaxPosition()
-                    # Si el motor no declara limites, getMin/Max devuelven 0,0.
                     if lo == 0.0 and hi == 0.0:
                         lo, hi = -3.14, 3.14
                     self.limits[name] = (lo, hi)
@@ -98,25 +42,22 @@ class PythonCPGGait:
                     self.limits[name] = (-3.14, 3.14)
 
     def _set(self, name, pos):
-        """Fija la posicion de un motor recortandola a su rango real (clamp)."""
         m = self.motors.get(name)
         if m is None:
             return
         lo, hi = self.limits.get(name, (-3.14, 3.14))
-        # margen de seguridad para no tocar el tope exacto
         margin = 0.02
         lo_s, hi_s = lo + margin, hi - margin
         clamped = max(lo_s, min(hi_s, pos))
         if abs(clamped - pos) > 1e-6 and name not in self._warned:
             self._warned.add(name)
             print(f"[darwin_agent][CPG] '{name}' recortado: pedido {pos:.3f} "
-                  f"fuera de [{lo:.3f}, {hi:.3f}] (aviso unico por motor).")
+                  f"fuera de [{lo:.3f}, {hi:.3f}] (aviso unico por motor).", flush=True)
         try:
             m.setPosition(clamped)
         except Exception:
             pass
 
-    # Postura de pie semiflexionada (crouch), con signos espejo correctos.
     STAND = {
         "LegUpperL": 0.45, "LegUpperR": -0.45,
         "LegLowerL": -0.9, "LegLowerR": 0.9,
@@ -131,41 +72,25 @@ class PythonCPGGait:
             self._set(name, pos)
 
     def step(self, x_amp, a_amp):
-        """Avanza un ciclo de CPG con la amplitud de avance/giro pedidos.
-
-        x_amp in [-1, 1] escala la longitud de paso; a_amp in [-0.5, 0.5] el giro.
-        Las amplitudes son pequenas y quedan dentro del rango de cada motor.
-        """
         dt = self.timestep / 1000.0
         self.phase += 2 * math.pi * self.freq * dt
-        s = math.sin(self.phase)       # fase pierna izquierda
-        # Amplitudes conservadoras (rad) dentro de rango:
-        hip_a = 0.35 * x_amp           # oscilacion de cadera (pitch)
-        knee_a = 0.35 * abs(x_amp)     # flexion extra de rodilla en la fase de vuelo
-        ank_a = 0.20 * x_amp           # compensacion de tobillo
-        turn = 0.3 * a_amp             # giro con PelvY
-
+        s = math.sin(self.phase)
+        anim = 0.15 * abs(x_amp)
         base = self.STAND
-        # Cadera: espejo (+ izq, - der). Oscilan en antifase (s y -s).
-        self._set("LegUpperL", base["LegUpperL"] + hip_a * s)
-        self._set("LegUpperR", base["LegUpperR"] - hip_a * s)
-        # Rodilla: flexiona en la fase de vuelo de cada pierna (signo espejo).
-        self._set("LegLowerL", base["LegLowerL"] - knee_a * max(0.0, s))
-        self._set("LegLowerR", base["LegLowerR"] + knee_a * max(0.0, -s))
-        # Tobillo: compensa (espejo).
-        self._set("AnkleL", base["AnkleL"] + ank_a * s)
-        self._set("AnkleR", base["AnkleR"] - ank_a * s)
-        # Giro: rotacion de la pelvis en yaw (mismo signo ambos lados).
-        self._set("PelvYL", turn)
-        self._set("PelvYR", turn)
+        self._set("LegUpperL", base["LegUpperL"] + anim * s)
+        self._set("LegUpperR", base["LegUpperR"] - anim * s)
+        self._set("LegLowerL", base["LegLowerL"] - 0.10 * abs(x_amp) * max(0.0, s))
+        self._set("LegLowerR", base["LegLowerR"] + 0.10 * abs(x_amp) * max(0.0, -s))
+        self._set("AnkleL", base["AnkleL"])
+        self._set("AnkleR", base["AnkleR"])
 
-
-def main() -> None:  # pragma: no cover - requiere Webots
+def main():
     from controller import Robot  # type: ignore
 
     robot = Robot()
     timestep = int(robot.getBasicTimeStep())
     safety = SafetyConfig()
+    print(f"[darwin_agent] iniciado. basicTimeStep={timestep} ms", flush=True)
 
     def try_enable(name):
         dev = robot.getDevice(name)
@@ -176,19 +101,18 @@ def main() -> None:  # pragma: no cover - requiere Webots
                 pass
         return dev
 
-    # Sensores requeridos por el gait manager y útiles para la observación.
     try_enable("Accelerometer")
-    gyro = try_enable("Gyro")
-    # Habilitar los sensores de posición de las piernas (requerido por managers).
+    try_enable("Gyro")
     for name in LEG_MOTORS:
         try_enable(name + "S")
 
-    # Receiver nativo del PROTO (canal 0).
     receiver = robot.getDevice("receiver")
     if receiver is not None:
         receiver.enable(timestep)
+        print("[darwin_agent] receiver habilitado (canal del PROTO).", flush=True)
+    else:
+        print("[darwin_agent] AVISO: no se encontro el Receiver 'receiver'.", flush=True)
 
-    # --- Selección de backend de marcha ---
     backend = "cpg"
     gait = None
     try:
@@ -199,14 +123,15 @@ def main() -> None:  # pragma: no cover - requiere Webots
         gait.setXAmplitude(0.0)
         gait.setAAmplitude(0.0)
         backend = "managers"
-        print("[darwin_agent] backend de marcha: managers (RobotisOp2GaitManager).")
+        print("[darwin_agent] backend de marcha: managers.", flush=True)
     except Exception as e:
         cpg = PythonCPGGait(robot, timestep)
         cpg.start()
         gait = cpg
         backend = "cpg"
-        print(f"[darwin_agent] managers no disponible ({e}).")
-        print("[darwin_agent] backend de marcha: CPG en Python puro (no requiere compilar managers).")
+        print(f"[darwin_agent] managers no disponible ({type(e).__name__}: {e}).", flush=True)
+        print("[darwin_agent] locomocion CUASI-ESTATICA (postura firme + animacion).", flush=True)
+        print(f"[darwin_agent] motores de pierna detectados: {sorted(cpg.motors.keys())}", flush=True)
 
     x_amp, a_amp = 0.0, 0.0
 
@@ -234,7 +159,6 @@ def main() -> None:  # pragma: no cover - requiere Webots
             gait.step(timestep)
         else:
             gait.step(x_amp, a_amp)
-
 
 if __name__ == "__main__":
     main()

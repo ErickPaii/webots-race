@@ -41,17 +41,18 @@ def load_policy(algo, model_path, env):
 
 
 def evaluate(algo, exp_id, seed, episodes, debug=False, out_dir="results",
-             models_dir="models"):
+             models_dir="models", tag=""):
     algo = algo.upper()
     scn = _scenario(exp_id)
     config = scn["config"]
     config.seed = seed
+    suffix = f"_{tag}" if tag else ""
 
     env, source = make_env(config=config, debug=debug)
-    model_path = os.path.join(models_dir, f"{algo}_{exp_id}_seed{seed}")
+    model_path = os.path.join(models_dir, f"{algo}_{exp_id}_seed{seed}{suffix}")
     policy = load_policy(algo, model_path, env)
 
-    csv_path = os.path.join(out_dir, f"eval_{algo}_{exp_id}_seed{seed}.csv")
+    csv_path = os.path.join(out_dir, f"eval_{algo}_{exp_id}_seed{seed}{suffix}.csv")
     logger = CSVLogger(csv_path, EVAL_COLUMNS)
 
     print(f"[eval] algo={algo} exp={exp_id} seed={seed} episodes={episodes} source={source}")
@@ -94,9 +95,10 @@ def main():
     p.add_argument("--debug", action="store_true")
     p.add_argument("--out-dir", default="results")
     p.add_argument("--models-dir", default="models")
+    p.add_argument("--tag", default="")
     args = p.parse_args()
     evaluate(args.algo, args.exp, args.seed, args.episodes, debug=args.debug,
-             out_dir=args.out_dir, models_dir=args.models_dir)
+             out_dir=args.out_dir, models_dir=args.models_dir, tag=args.tag)
 
 
 if __name__ == "__main__":

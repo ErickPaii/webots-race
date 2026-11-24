@@ -77,7 +77,7 @@ def main():
     elif args.profile == "night-lite":
         wanted = set(NIGHT_LITE_IDS)
         scenarios = [s for s in build_scenarios() if s["exp_id"] in wanted]
-        timesteps = args.timesteps or 60_000
+        timesteps = args.timesteps or 6_000
         seeds = args.seeds or [0]
     else:  # full
         scenarios = build_scenarios()
