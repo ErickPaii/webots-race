@@ -1,6 +1,6 @@
 """Agente propio (algoritmo del Taller 2): Actor-Critic + Population Discovery.
 
-ALGORITMO (confirmado por el usuario, adaptado del Taller 2 sobre Atari):
+ALGORITMO (adaptado del Taller 2 sobre Atari):
     Actor-Critic (A2C a n pasos) con bonus de entropía, AUMENTADO con
     "descubrimiento poblacional": cada `disc_every` pasos se crea una población
     de copias mutadas del Actor (pares antitéticos +eps / -eps, estilo Evolution

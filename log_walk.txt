@@ -1,9 +1,0 @@
-[test_walk] fuente=WEBOTS_REAL  accion='forward'  pasos=25
-
-==== RESULTADO DE LA PRUEBA DE MARCHA ====
-  posicion inicial: x=0.000  y=0.000
-  posicion final:   x=4.500  y=0.000
-  distancia avanzada (X): 4.500 m
-  desvio lateral (Y):     0.000 m
-  se cayo: no
-  >>> La marcha SIRVE: avanza sin caerse. Puedes entrenar. <<<

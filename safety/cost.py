@@ -8,8 +8,8 @@ violaciones), tal como pide el enunciado.
 El costo NO modifica la recompensa que ve el algoritmo de RL base (PPO/DQN/A2C
 de Stable-Baselines3 optimizan solo el reward). El costo se acumula y se guarda
 en el CSV para el análisis de seguridad. El agente propio, al ser implementación
-nuestra, SÍ puede usar este costo (p. ej. para una variante lagrangiana) si se
-decide así cuando se confirme el algoritmo del taller 2.
+propia, SÍ puede usar este costo (p. ej. para una variante lagrangiana) del
+algoritmo del Taller 2.
 """
 
 from __future__ import annotations

@@ -40,7 +40,6 @@ webots_race/
 │   └── run_all.py               # barrido completo (train+eval de todas las corridas)
 ├── results/                     # CSVs generados (vacío hasta ejecutar)
 ├── figures/                     # figuras generadas (vacío hasta ejecutar)
-├── report/                      # informe IEEE (LaTeX)
 ├── train.py  evaluate.py  run_race.py  analyze.py
 ├── check_setup.py               # verifica tu entorno
 ├── requirements.txt

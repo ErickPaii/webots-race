@@ -6,7 +6,7 @@ combinación: entrena (train) y evalúa (evaluate).
 Perfiles:
   --profile fast       : 4 escenarios, pocos timesteps, 1 semilla. Validación.
   --profile night-lite : 20 escenarios x 4 algos x 1 semilla x 60k timesteps.
-                         Objetivo del usuario (cabe en 2-3 noches). Cumple el
+                         Perfil objetivo (cabe en 2-3 noches). Cumple el
                          minimo de 20 experimentos del enunciado.
   --profile full       : 23 escenarios x 4 algos x 3 semillas x 200k timesteps.
 
@@ -21,7 +21,7 @@ Uso:
     # validación sin Webots (NO para el informe):
     python -m experiments.run_all --profile fast --debug
 
-    # objetivo del usuario, con Webots abierto en darwin_race.wbt:
+    # perfil objetivo, con Webots abierto en darwin_race.wbt:
     python -m experiments.run_all --profile night-lite
 
     # reanudar tras un corte: vuelve a lanzar el MISMO comando; salta lo hecho.

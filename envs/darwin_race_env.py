@@ -5,7 +5,7 @@ observation_space, action_space) y delega la física al Supervisor de Webots a
 través de un socket TCP (ver envs/protocol.py). El Supervisor lanza/posiciona
 el robot, avanza la simulación y devuelve observación + reward + flags.
 
-Diseño (aprobado en la Fase 0):
+Diseño del espacio de observación/acción:
 
   observation_space: Box(12,) normalizado ~[-1, 1]
       [ dx_meta, dz_meta, dist_meta, heading_error,
